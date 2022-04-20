@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import moment from 'moment';
+
 
 
 const Forecast = () => {
@@ -20,11 +22,11 @@ const Forecast = () => {
     <div>
         {(typeof  data.main != 'undefined')?(
             <div>
-                <h3>{data.name}</h3>
+                <h3>{moment().format('ddd')}</h3>
                 <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`} alt='weather icon' />
-                <p>Temp: {Math.round(1.8*(data.main.temp - 273)+32)} &deg;F</p>
-                <p>Hi: {Math.round(1.8*(data.main.temp_max - 273)+32)} &deg;F</p>
-                <p>Lo: {Math.round(1.8*(data.main.temp_min - 273)+32)} &deg;F</p>
+
+                <p>Hi: {Math.round(1.8*(data.main.temp_max - 273)+32)} &deg;</p>
+                <p>Lo: {Math.round(1.8*(data.main.temp_min - 273)+32)} &deg;</p>
             </div>
             
         ):(<div></div>)}
