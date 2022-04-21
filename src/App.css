@@ -1,13 +1,44 @@
+html,body{
+  box-sizing: border-box;
+}
+
+.body{
+  margin: 0;
+  padding: 0;
+}
+
+
 .App {
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
 /* Card Styles */
 
 .card{
+  margin-top: 100px;
+  background-color: #fff;
   width: 150px;
-  height: 200px;
-  border: 1px solid black;
-  padding: 20px;
+  height: 225px;
+  padding: 10px;
+  border-radius: .2em;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.card-title{
+  color: dimgray;
+}
+
+.card-content{
+  display: flex;
+  justify-content: center;
+}
+
+.card-content p{
+  margin: 0 20px;
+  font-size: 1.25em;
+  font-weight: bold;
 }
