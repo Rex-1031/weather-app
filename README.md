@@ -15,12 +15,12 @@ Get data from a weather API
 ### Part II
 Display the weather for today.  
 
-It should look something like this: 
+It should look something like this:  
 !["Today's Weather Display"](src/assets/weather-1day.png)
 
 
 ### Part III
 Create a 5-day forecast.
 
-If should look something like this:
+It should look something like this:
 !["Five Day Display"](src/assets/weather-5day.png)
