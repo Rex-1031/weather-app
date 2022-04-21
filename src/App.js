@@ -8,7 +8,7 @@ function App() {
     useEffect(()=>{
         const fetchData = async()=>{
             //Store this data in a .env later
-            await fetch('https://api.openweathermap.org/data/2.5/weather?lat=41.505493&lon=-81.681290&appid=ddda86334bf110d91053b9bccca10443')
+            await fetch(`${process.env.REACT_APP_API_URL}appid=${process.env.REACT_APP_API_KEY}`)
             .then(res => res.json())
             .then(result =>{
                 setData(result)
