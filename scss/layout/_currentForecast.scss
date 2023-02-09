@@ -1,5 +1,5 @@
 .currentForecast{
-    .currentForecst__location{
+    .currentForecast__location{
         font-size: 1rem;
         font-weight: center;
         text-align: center;
@@ -99,6 +99,20 @@
         .humidity{
             display: none;
             grid-row:  6/ span 1;
+            grid-column: 1 / span 4;
+            padding-top: 0.5rem;
+            font-weight: normal;
+            color: $fadecolor;
+            @include mqMaxWMinH(1024px, 700px){
+                @include flexCenter;
+            }
+            @include mqh(1080px){
+                @include flexCenter;
+            }
+        }
+        .wind{
+            display: none;
+            grid-row: 7 / span 1;
             grid-column: 1 / span 4;
             padding-top: 0.5rem;
             font-weight: normal;

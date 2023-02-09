@@ -12,10 +12,10 @@
     <link  rel="stylesheet" href="css/main.min.css">
 </head>
 <body>
-    <main>
+    <main class="fade-in">
         <h2 class="offscreen">Responsive Weather App Powered by the Open Weather A P I</h2>
 
-        <section id="searchBar" class="searchBar">
+        <section id="searchBar" class="searchBar fade-in">
             <form  id="searchBar__form" class="searchBar__form" role="search">
                 <label for="searchBar__text" class="offscreen">Enter a new location</label>
                 <input 
@@ -41,11 +41,11 @@
         <a href="#currentForecast" class="skip-link">Skip to Current Conditions</a>
         <section 
             id="currentForecast" 
-            class="currentForecast"
+            class="currentForecast fade-in"
             role="region"
             aria-labelledby="currentForecast__location"
         >
-            <h2 id="currentForecast__location" class="currentForecast_location"> Current Conditions 
+            <h2 id="currentForecast__location" class="currentForecast__location"> Current Conditions 
             </h2>
             <div id="currentForecasst__conditions" class="currentForecast__conditions">
                 <div class="icon" id="icon">
@@ -64,7 +64,7 @@
 
         <a href="#dailyForecast" class="skip-link">Skip to Six Day Forecast</a>
 
-        <nav id="navButtons" class="navButtons">
+        <nav id="navButtons" class="navButtons fade-in">
             <button 
                 id="getLocation" 
                 class="button" 
@@ -111,8 +111,8 @@
                 <i class="fas fa-sync fa-spin none"></i>
             </button>
         </nav>
-        <hr>
-        <section id="dailyForecast" class="dailyForecast" role="region" aria-labelledby="dailyForecast__title">
+        <hr class="fade-in">
+        <section id="dailyForecast" class="dailyForecast fade-in" role="region" aria-labelledby="dailyForecast__title">
             <h2 id="dailyForecast__title" class="dailyForecast__title offscreen">Six Day Forecast</h2>
             <div id="dailyForecast__contents" class="dailyForecast__contents">
 
