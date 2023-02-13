@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/Rex-1031/weather-app#readme",
   "dependencies": {
-    "node-fetch": "^3.3.0"
+    "node-fetch": "^2.6.1"
   }
 }
