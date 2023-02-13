@@ -24,7 +24,7 @@ export const displayError = (headerMsg, srMsg) => {
 export const displayApiError = (statusCode) => {
   const properMsg = toProperCase(statusCode.message);
   updateWeatherLocationHeader(properMsg);
-  updateScreenReaderConfirmation(`${properMsg}. Try Again.`);
+  updateScreenReaderConfirmation(`${properMsg}. Please try again.`);
 };
 
 const toProperCase = (text) => {
@@ -46,7 +46,6 @@ const updateWeatherLocationHeader = (message) => {
       mapArray[0].indexOf("-") === -1
         ? mapArray[0].slice(0, 10)
         : mapArray[0].slice(0, 11);
-
     const lon =
       mapArray[1].indexOf("-") === -1
         ? mapArray[1].slice(0, 11)
@@ -72,12 +71,11 @@ export const updateDisplay = (weatherJson, locationObj) => {
   );
   updateScreenReaderConfirmation(screenReaderWeather);
   updateWeatherLocationHeader(locationObj.getName());
-  //current conditions
+  // current conditions
   const ccArray = createCurrentConditionsDivs(
     weatherJson,
     locationObj.getUnit()
   );
-
   displayCurrentConditions(ccArray);
   displaySixDayForecast(weatherJson);
   setFocusOnSearch();
@@ -88,7 +86,6 @@ const fadeDisplay = () => {
   const cc = document.getElementById("currentForecast");
   cc.classList.toggle("zero-vis");
   cc.classList.toggle("fade-in");
-
   const sixDay = document.getElementById("dailyForecast");
   sixDay.classList.toggle("zero-vis");
   sixDay.classList.toggle("fade-in");
@@ -105,7 +102,6 @@ const clearDisplay = () => {
 
 const deleteContents = (parentElement) => {
   let child = parentElement.lastElementChild;
-
   while (child) {
     parentElement.removeChild(child);
     child = parentElement.lastElementChild;
@@ -117,10 +113,10 @@ const getWeatherClass = (icon) => {
   const lastChar = icon.slice(2);
   const weatherLookup = {
     "09": "snow",
-    "10": "rain",
-    "11": "rain",
-    "13": "snow",
-    "50": "fog",
+    10: "rain",
+    11: "rain",
+    13: "snow",
+    50: "fog"
   };
   let weatherClass;
   if (weatherLookup[firstTwoChars]) {
@@ -144,7 +140,6 @@ const buildScreenReaderWeather = (weatherJson, locationObj) => {
   const location = locationObj.getName();
   const unit = locationObj.getUnit();
   const tempUnit = unit === "imperial" ? "Fahrenheit" : "Celsius";
-
   return `${weatherJson.current.weather[0].description} and ${Math.round(
     Number(weatherJson.current.temp)
   )}°${tempUnit} in ${location}`;
@@ -156,23 +151,23 @@ const setFocusOnSearch = () => {
 
 const createCurrentConditionsDivs = (weatherObj, unit) => {
   const tempUnit = unit === "imperial" ? "F" : "C";
-  const windUnit = unit === "imperail" ? "mph" : "m/s";
+  const windUnit = unit === "imperial" ? "mph" : "m/s";
   const icon = createMainImgDiv(
     weatherObj.current.weather[0].icon,
     weatherObj.current.weather[0].description
   );
-
   const temp = createElem(
     "div",
     "temp",
-    `${Math.round(Number(weatherObj.current.temp))}°`
+    `${Math.round(Number(weatherObj.current.temp))}°`,
+    tempUnit
   );
   const properDesc = toProperCase(weatherObj.current.weather[0].description);
   const desc = createElem("div", "desc", properDesc);
   const feels = createElem(
     "div",
     "feels",
-    `Feels like  ${Math.round(Number(weatherObj.current.feels_like))}°`
+    `Feels Like ${Math.round(Number(weatherObj.current.feels_like))}°`
   );
   const maxTemp = createElem(
     "div",
@@ -215,7 +210,7 @@ const createElem = (elemType, divClassName, divText, unit) => {
   }
   if (divClassName === "temp") {
     const unitDiv = document.createElement("div");
-    unitDiv.classList.add("unit");
+    unitDiv.className = "unit";
     unitDiv.textContent = unit;
     div.appendChild(unitDiv);
   }
@@ -226,7 +221,6 @@ const translateIconToFontAwesome = (icon) => {
   const i = document.createElement("i");
   const firstTwoChars = icon.slice(0, 2);
   const lastChar = icon.slice(2);
-
   switch (firstTwoChars) {
     case "01":
       if (lastChar === "d") {
@@ -259,7 +253,7 @@ const translateIconToFontAwesome = (icon) => {
       }
       break;
     case "11":
-      i.classList.add("fas", "fa-poo-strom");
+      i.classList.add("fas", "fa-poo-storm");
       break;
     case "13":
       i.classList.add("far", "fa-snowflake");
@@ -270,7 +264,6 @@ const translateIconToFontAwesome = (icon) => {
     default:
       i.classList.add("far", "fa-question-circle");
   }
-
   return i;
 };
 
@@ -295,7 +288,6 @@ const createDailyForecastDivs = (dayWeather) => {
     "dayAbbreviation",
     dayAbbreviationText
   );
-
   const dayIcon = createDailyForecastIcon(
     dayWeather.weather[0].icon,
     dayWeather.weather[0].description
@@ -305,7 +297,6 @@ const createDailyForecastDivs = (dayWeather) => {
     "dayHigh",
     `${Math.round(Number(dayWeather.temp.max))}°`
   );
-
   const dayLow = createElem(
     "p",
     "dayLow",
@@ -327,16 +318,17 @@ const createDailyForecastIcon = (icon, altText) => {
   } else {
     img.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
   }
-
   img.alt = altText;
   return img;
 };
 
-const displayDailyForecast = (dfArray)=>{
-    const dayDiv = createElem("div", "forecastDay")
-    dfArray.forEach(el =>{
-        dayDiv.appendChild(el)
-    })
-    const dailyForecastContainer = document.getElementById("dailyForecast__contents")
-    dailyForecastContainer.appendChild(dayDiv)
-}
+const displayDailyForecast = (dfArray) => {
+  const dayDiv = createElem("div", "forecastDay");
+  dfArray.forEach((el) => {
+    dayDiv.appendChild(el);
+  });
+  const dailyForecastContainer = document.getElementById(
+    "dailyForecast__contents"
+  );
+  dailyForecastContainer.appendChild(dayDiv);
+};
