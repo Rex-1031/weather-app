@@ -23,7 +23,7 @@ export const displayError = (headerMsg, srMsg) => {
 
 export const displayApiError = (statusCode) => {
   const properMsg = toProperCase(statusCode.message);
-  
+  console.log(properMsg)
   updateWeatherLocationHeader(properMsg);
   updateScreenReaderConfirmation(`${properMsg}. Please try again.`);
 };
