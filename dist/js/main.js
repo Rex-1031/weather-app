@@ -144,7 +144,7 @@ const submitNewLocation = async (e) => {
 
   const coordsData = await getCoordsFromApi(entryText, currentLoc.getUnit());
   if (coordsData) {
-    if (coordsData.cod === 200) {
+    if (coordsData.code === 200) {
       const myCoordsObj = {
         lat: coordsData.coord.lat,
         lon: coordsData.coord.lon,
